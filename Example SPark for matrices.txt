@@ -1,0 +1,24 @@
+from pyspark.mllib.linalg import DenseMatrix
+
+m = DenseMatrix(2, 2, [1.0,1.0,1.0,1.0])
+m1 = DenseMatrix(2, 2, range(4))
+
+mArray = m.toArray()
+m1Array = m1.toArray()
+
+listMat1 = [mArray, m1Array]
+listMat2 = [mArray, m1Array]
+
+listM = [listMat1, listMat2]
+mparl = sc.parallelize(listM)
+
+
+mparl.map(lambda l: l[0].sum() + l[1].sum()).reduce(lambda x,y: x+y)
+
+def HC(ListMat, param1):
+	return
+
+mparl.map(lambda l: HC(l,param1))
+
+
+
